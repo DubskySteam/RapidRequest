@@ -1,6 +1,7 @@
 ### Custom & Plugins ###
 .idea/discord.xml
 .idea/jpa-buddy.xml
+.idea/uiDesigner.xml
 
 ### Gradle ###
 
