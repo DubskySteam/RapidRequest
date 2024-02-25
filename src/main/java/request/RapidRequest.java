@@ -21,6 +21,9 @@ public class RapidRequest {
 
     }
 
+    /**
+     * @param method      HTTP method to use
+     */
     public RapidRequest setMethod(HttpMethod method) {
         this.method = method;
         return this;
@@ -37,19 +40,18 @@ public class RapidRequest {
     }
 
     public RapidResponse call() {
-        HttpClient client = HttpClient.newHttpClient();
-
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(url))
-                .method(method.name(), HttpRequest.BodyPublishers.noBody())
-                .build();
-
-        try {
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            return new RapidResponse(response.statusCode(), response.body());
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new RapidResponse();
+        try (HttpClient client = HttpClient.newHttpClient()) {
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create(url))
+                    .method(method.name(), HttpRequest.BodyPublishers.noBody())
+                    .build();
+            try {
+                HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+                return new RapidResponse(response.statusCode(), response.body());
+            } catch (Exception e) {
+                e.printStackTrace();
+                return new RapidResponse();
+            }
         }
     }
 
