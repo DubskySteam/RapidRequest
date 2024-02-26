@@ -1,17 +1,22 @@
 package response;
 
+import request.ReturnType;
+
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class RapidResponse {
 
     int statusCode;
     String response;
+    ReturnType returnType;
 
     public RapidResponse() {}
 
-    public RapidResponse(int statusCode, String response) {
+    public RapidResponse(int statusCode, String response, ReturnType returnType) {
         this.statusCode = statusCode;
         this.response = response;
+        this.returnType = returnType;
     }
 
     public int getStatusCode() {
@@ -30,26 +35,28 @@ public class RapidResponse {
         this.response = response;
     }
 
+    public ReturnType getReturnType() {
+        return returnType;
+    }
+
+    public void setReturnType(ReturnType returnType) {
+        this.returnType = returnType;
+    }
+
     @Override
     public String toString() {
         return "RapidResponse{" +
                 "statusCode=" + statusCode +
                 ", response='" + response + '\'' +
+                ", returnType=" + returnType +
                 '}';
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (!RapidResponse.class.isAssignableFrom(obj.getClass())) {
-            return false;
-        }
-        final RapidResponse other = (RapidResponse) obj;
-        if (this.statusCode != other.statusCode) {
-            return false;
-        }
-        return Objects.equals(this.response, other.response);
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        RapidResponse that = (RapidResponse) obj;
+        return statusCode == that.statusCode && Objects.equals(response, that.response) && returnType == that.returnType;
     }
 }
