@@ -1,6 +1,6 @@
 package request;
 
-public enum ReturnType {
+public enum ContentType {
     JSON,
     XML,
     HTML,
