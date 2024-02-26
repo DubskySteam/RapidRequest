@@ -1,4 +1,4 @@
-package request;
+package util;
 
 public enum ContentType {
     JSON,

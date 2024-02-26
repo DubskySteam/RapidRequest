@@ -1,10 +1,8 @@
 package util;
 
-import request.ReturnType;
-
 public class TypeParser {
 
-    public String parseType(ReturnType returnType) {
+    public static String parseType(ContentType returnType) {
         return switch (returnType) {
             case XML -> "application/xml";
             case HTML -> "text/html";
