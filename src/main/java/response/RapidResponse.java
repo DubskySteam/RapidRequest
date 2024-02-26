@@ -1,22 +1,21 @@
 package response;
 
-import request.ReturnType;
+import request.Request;
 
-import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class RapidResponse {
 
     int statusCode;
     String response;
-    ReturnType returnType;
+    Request request;
 
     public RapidResponse() {}
 
-    public RapidResponse(int statusCode, String response, ReturnType returnType) {
+    public RapidResponse(int statusCode, String response, Request request){
         this.statusCode = statusCode;
         this.response = response;
-        this.returnType = returnType;
+        this.request = request;
     }
 
     public int getStatusCode() {
@@ -35,12 +34,12 @@ public class RapidResponse {
         this.response = response;
     }
 
-    public ReturnType getReturnType() {
-        return returnType;
+    public Request getRequest() {
+        return request;
     }
 
-    public void setReturnType(ReturnType returnType) {
-        this.returnType = returnType;
+    public void setRequest(Request request) {
+        this.request = request;
     }
 
     @Override
@@ -48,7 +47,7 @@ public class RapidResponse {
         return "RapidResponse{" +
                 "statusCode=" + statusCode +
                 ", response='" + response + '\'' +
-                ", returnType=" + returnType +
+                ", request=" + request +
                 '}';
     }
 
@@ -57,6 +56,6 @@ public class RapidResponse {
         if (this == obj) return true;
         if (obj == null || getClass() != obj.getClass()) return false;
         RapidResponse that = (RapidResponse) obj;
-        return statusCode == that.statusCode && Objects.equals(response, that.response) && returnType == that.returnType;
+        return statusCode == that.statusCode && Objects.equals(response, that.response) && Objects.equals(request, that.request);
     }
 }
