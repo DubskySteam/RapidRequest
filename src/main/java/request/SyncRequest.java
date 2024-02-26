@@ -11,6 +11,9 @@ import java.net.http.HttpResponse;
 import java.util.Map;
 import java.util.logging.Logger;
 
+/**
+ * @author DubskySteam
+ */
 public final class SyncRequest extends Request {
 
     @Override

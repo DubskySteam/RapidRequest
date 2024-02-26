@@ -4,6 +4,9 @@ import request.Request;
 
 import java.util.Objects;
 
+/**
+ * @author DubskySteam
+ */
 public class RapidResponse {
 
     int statusCode;

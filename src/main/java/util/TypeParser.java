@@ -1,5 +1,8 @@
 package util;
 
+/**
+ * @author DubskySteam
+ */
 public class TypeParser {
 
     public static String parseType(ContentType returnType) {

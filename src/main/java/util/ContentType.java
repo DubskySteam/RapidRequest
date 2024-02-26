@@ -1,5 +1,8 @@
 package util;
 
+/**
+ * @author DubskySteam
+ */
 public enum ContentType {
     JSON,
     XML,
