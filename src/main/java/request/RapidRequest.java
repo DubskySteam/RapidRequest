@@ -6,6 +6,8 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.ArrayList;
+import java.util.logging.Logger;
 
 /**
  * @author Dubsky
@@ -15,6 +17,8 @@ public class RapidRequest {
 
     private HttpMethod method;
     private String url;
+    private String body;
+    private ArrayList<String> headers;
     private ReturnType returnType;
 
     public RapidRequest() {
@@ -34,8 +38,17 @@ public class RapidRequest {
         return this;
     }
 
-    public RapidRequest setReturnType(ReturnType returnType) {
+    public RapidRequest expect(ReturnType returnType) {
         this.returnType = returnType;
+        return this;
+    }
+
+    public String getBody() {
+        return body;
+    }
+
+    public RapidRequest setBody(String body) {
+        this.body = body;
         return this;
     }
 
@@ -43,13 +56,14 @@ public class RapidRequest {
         try (HttpClient client = HttpClient.newHttpClient()) {
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(URI.create(url))
-                    .method(method.name(), HttpRequest.BodyPublishers.noBody())
+                    .method(method.name(), HttpRequest.BodyPublishers.ofString(body))
+                    .header("Accept", "application/" + returnType.name().toLowerCase())
                     .build();
             try {
                 HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-                return new RapidResponse(response.statusCode(), response.body());
+                return new RapidResponse(response.statusCode(), response.body(), returnType);
             } catch (Exception e) {
-                e.printStackTrace();
+                Logger.getGlobal().severe("Error occurred while sending (s)request: " + e.getMessage());
                 return new RapidResponse();
             }
         }
