@@ -4,5 +4,9 @@ public enum ReturnType {
     JSON,
     XML,
     HTML,
-    TEXT
+
+    TEXT,
+    PNG,
+    JPEG,
+    PDF
 }
