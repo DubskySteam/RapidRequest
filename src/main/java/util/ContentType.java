@@ -1,7 +1,7 @@
 package util;
 
 /**
- * @author DubskySteam
+ * Represents the type of content that the client expects to receive.
  */
 public enum ContentType {
     JSON,

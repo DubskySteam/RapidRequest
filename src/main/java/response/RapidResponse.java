@@ -5,7 +5,7 @@ import request.Request;
 import java.util.Objects;
 
 /**
- * @author DubskySteam
+ * Represents a response from a request.
  */
 public class RapidResponse {
 
@@ -13,9 +13,10 @@ public class RapidResponse {
     String response;
     Request request;
 
-    public RapidResponse() {}
+    public RapidResponse() {
+    }
 
-    public RapidResponse(int statusCode, String response, Request request){
+    public RapidResponse(int statusCode, String response, Request request) {
         this.statusCode = statusCode;
         this.response = response;
         this.request = request;

@@ -1,10 +1,12 @@
 package util;
 
-/**
- * @author DubskySteam
- */
 public class TypeParser {
 
+    /**
+     * Parses a ContentType to a string
+     * @param returnType the ContentType to parse
+     * @return the string representation of the ContentType
+     */
     public static String parseType(ContentType returnType) {
         return switch (returnType) {
             case XML -> "application/xml";

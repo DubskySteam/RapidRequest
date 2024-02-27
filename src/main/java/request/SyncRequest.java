@@ -11,11 +11,13 @@ import java.net.http.HttpResponse;
 import java.util.Map;
 import java.util.logging.Logger;
 
-/**
- * @author DubskySteam
- */
 public final class SyncRequest extends Request {
 
+    /**
+     * Send the request and return the response
+     *
+     * @return the response
+     */
     @Override
     public RapidResponse call() {
         try (HttpClient client = HttpClient.newHttpClient()) {
