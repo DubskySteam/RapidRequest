@@ -1,8 +1,8 @@
-package request;
+package dev.dubsky.rapidrequest.request;
 
-import response.RapidResponse;
-import util.BodyParser;
-import util.TypeParser;
+import dev.dubsky.rapidrequest.util.TypeParser;
+import dev.dubsky.rapidrequest.response.RapidResponse;
+import dev.dubsky.rapidrequest.util.BodyParser;
 
 import java.net.URI;
 import java.net.http.HttpClient;

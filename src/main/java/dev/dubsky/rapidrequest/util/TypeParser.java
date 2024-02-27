@@ -1,4 +1,4 @@
-package util;
+package dev.dubsky.rapidrequest.util;
 
 public class TypeParser {
 

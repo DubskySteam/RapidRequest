@@ -1,4 +1,4 @@
-package util;
+package dev.dubsky.rapidrequest.util;
 
 /**
  * Represents the type of HTTP method that the client expects to use.

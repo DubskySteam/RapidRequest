@@ -1,6 +1,6 @@
-package response;
+package dev.dubsky.rapidrequest.response;
 
-import request.Request;
+import dev.dubsky.rapidrequest.request.Request;
 
 import java.util.Objects;
 

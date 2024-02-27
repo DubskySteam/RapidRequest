@@ -1,9 +1,9 @@
 import org.junit.jupiter.api.Test;
-import request.Request;
-import request.SyncRequest;
-import response.RapidResponse;
-import util.ContentType;
-import util.HttpMethod;
+import dev.dubsky.rapidrequest.request.Request;
+import dev.dubsky.rapidrequest.request.SyncRequest;
+import dev.dubsky.rapidrequest.response.RapidResponse;
+import dev.dubsky.rapidrequest.util.ContentType;
+import dev.dubsky.rapidrequest.util.HttpMethod;
 
 import static org.junit.jupiter.api.Assertions.*;
 
