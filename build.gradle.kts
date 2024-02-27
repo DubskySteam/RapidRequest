@@ -1,8 +1,7 @@
 plugins {
     id("java")
     id("maven-publish")
-    id("org.jetbrains.kotlin.jvm") version "2.0.0-Beta4"
-    id("org.jetbrains.dokka") version "1.9.10"
+    id("net.thebugmc.gradle.sonatype-central-portal-publisher") version "1.1.1"
 }
 
 group = "dev.dubsky"
@@ -21,27 +20,36 @@ tasks.test {
     useJUnitPlatform()
 }
 
-tasks.register("sourcesJar", Jar::class) {
-    from(sourceSets.main.get().allSource)
-    archiveClassifier.set("sources")
+signing {
+    useGpgCmd()
 }
 
-tasks.dokkaJavadoc {
-    outputDirectory.set(layout.buildDirectory.dir("dokkaJavadoc"))
-}
+centralPortal {
+    pom {
+        name = "RapidRequest"
+        description = "A small and lightweight library to make api requests easier"
+        url = "https://github.com/DubskySteam/RapidRequest"
+        packaging = "jar"
 
-tasks.register("javadocJar", Jar::class) {
-    from(tasks.named("dokkaJavadoc"))
-    archiveClassifier.set("javadoc")
-}
+        licenses {
+            license {
+                name = "GNU Lesser General Public License v3.0"
+                url = "https://www.gnu.org/licenses/lgpl-3.0.html"
+            }
+        }
 
-publishing {
-    publications {
-        create<MavenPublication>("mavenJava") {
-            from(components["java"])
+        developers {
+            developer {
+                id = "dubskysteam"
+                name = "DubskySteam"
+                email = "admin@dubsky.dev"
+            }
+        }
 
-            artifact(tasks["sourcesJar"])
-            artifact(tasks["javadocJar"])
+        scm {
+            connection = "scm:git:git://github.com/dubskysteam/rapidrequest.git"
+            developerConnection = "scm:git:ssh://github.com/dubskysteam/rapidrequest.git"
+            url = "https://github.com/dubskysteam/rapidrequest"
         }
     }
 }
