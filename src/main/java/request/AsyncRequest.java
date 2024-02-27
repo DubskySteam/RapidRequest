@@ -15,6 +15,7 @@ import java.util.logging.Logger;
  *
  * @deprecated Will be available in a future release.
  */
+@Deprecated
 public final class AsyncRequest extends Request {
 
     /**
