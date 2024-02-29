@@ -1,15 +1,15 @@
 package dev.dubsky.rapidrequest.request;
 
-import dev.dubsky.rapidrequest.util.TypeParser;
+import dev.dubsky.rapidrequest.logging.RapidLogger;
 import dev.dubsky.rapidrequest.response.RapidResponse;
 import dev.dubsky.rapidrequest.util.BodyParser;
+import dev.dubsky.rapidrequest.util.TypeParser;
 
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.Map;
-import java.util.logging.Logger;
 
 public final class SyncRequest extends Request {
 
@@ -36,8 +36,8 @@ public final class SyncRequest extends Request {
                 HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
                 return new RapidResponse(response.statusCode(), response.body(), this);
             } catch (Exception e) {
-                Logger.getGlobal().severe("Error occurred while sending request: " + e.getMessage());
-                return new RapidResponse();
+                RapidLogger.getInstance().log("Error occurred while sending request", e);
+                return new RapidResponse(500, "Internal Server Error", this);
             }
         }
     }
