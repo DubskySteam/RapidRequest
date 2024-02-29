@@ -1,46 +1,37 @@
 package dev.dubsky.rapidrequest.request;
 
-import dev.dubsky.rapidrequest.util.TypeParser;
+import dev.dubsky.rapidrequest.logging.RapidLogger;
 import dev.dubsky.rapidrequest.response.RapidResponse;
+import dev.dubsky.rapidrequest.util.BodyParser;
 
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.util.concurrent.CompletableFuture;
-import java.util.logging.Logger;
 
-/**
- * Represents an asynchronous request.
- *
- * @deprecated Will be available in a future release.
- */
-@Deprecated
 public final class AsyncRequest extends Request {
 
-    /**
-     * Sends an asynchronous request to the specified URL.
-     *
-     * @return a RapidResponse object containing the response from the server.
-     */
     @Override
     public RapidResponse call() {
-        CompletableFuture<RapidResponse> futureResponse;
-        try (HttpClient client = HttpClient.newHttpClient()) {
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create(url))
-                    .method(method.name(), HttpRequest.BodyPublishers.ofString(body))
-                    .header("Accept", TypeParser.parseType(returnType))
-                    .build();
+        RapidResponse response = new RapidResponse();
 
-            futureResponse = client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
-                    .thenApply(response -> new RapidResponse(response.statusCode(), response.body(), this))
-                    .exceptionally(e -> {
-                        Logger.getGlobal().severe("Error occurred while sending asynchronous request: " + e.getMessage());
-                        return new RapidResponse();
-                    });
-        }
-        return futureResponse.join();
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(url))
+                .method(method.name(), BodyParser.parseBody(body))
+                .build();
+
+        client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
+                .thenAccept(httpResponse -> {
+                    RapidLogger.getInstance().log("Request completed with status code " + httpResponse.statusCode());
+                    response.complete(httpResponse.statusCode(), httpResponse.body());
+                })
+                .exceptionally(e -> {
+                    RapidLogger.getInstance().log("Error occurred while sending request", e);
+                    response.complete(500, "Internal Server Error");
+                    return null;
+                });
+
+        return response;
     }
-
 }
