@@ -62,7 +62,7 @@ RapidResponse response = new AsyncRequest()
 
 **Asynchronous request with blocking**:
 ```java
-AsyncRequest response = new AsyncRequest()
+RapidResponse response = new AsyncRequest()
         .setUrl("https://type.fit/api/quotes")
         .setMethod(HttpMethod.GET)
         .expect(ContentType.JSON) // Optional
@@ -97,8 +97,8 @@ RapidResponse{
 
 ## 📌 Version History
 
-**v1.1 - 2024-02-27**
-**v1.2 - 2024-02-29**
+- **v1.1 - 27-02-2024**
+- **v1.2 - 29-02-2024**
 
 __Latest__:
 
