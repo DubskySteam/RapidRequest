@@ -2,6 +2,9 @@
 RapidRequest is a simple and easy to use HTTP request library for Java.
 It is designed to make HTTP requests with minimal code and maximum flexibility.
 
+![Maven Central Version](https://img.shields.io/maven-central/v/dev.dubsky/RapidRequest)
+![GitHub](https://img.shields.io/github/license/dubskysteam/RapidRequest)
+
 ## 🌟 Features
 - [X] Synchronous Requests
 - [X] Response Object
@@ -10,25 +13,26 @@ It is designed to make HTTP requests with minimal code and maximum flexibility.
 - [ ] Asynchronous Requests
 - [ ] Advanced Logging
 - [ ] Exception Handling
-- [ ] Request/Response Encryption
-- [ ] File Uploads
-- [ ] File Downloads
+- [ ] File Handling
 - [ ] Threading?
 
 ## 🛠️ Quick Start Guide
 
+View the Maven Repository [here](https://central.sonatype.com/artifact/dev.dubsky/RapidRequest)
+
 ### Step 1: Add the dependency
+
 Add the following dependency to your `pom.xml` file:
 ```xml
 <dependency>
     <groupId>dev.dubsky</groupId>
     <artifactId>rapidrequest</artifactId>
-    <version>1.1</version>
+    <version>1.2</version>
 </dependency>
 ```
 or if you are using Gradle, add the following to your `build.gradle` file:
 ```gradle
-implementation 'dev.dubsky:rapidrequest:1.0'
+implementation 'dev.dubsky:rapidrequest:1.2'
 ```
 
 ### Step 2: Make a request
@@ -57,7 +61,7 @@ RapidResponse req = new RapidRequest()
         });
 ```
 
-### Step 3: Example Response Object
+### Step 3: Result is given in a Response Object
 ```java
 RapidResponse{
     statusCode=200, 
@@ -79,6 +83,10 @@ RapidResponse{
 }
 ```
 
-## 📌 Version & Downloads
+## 📌 Version History
 
-Will be available as soon as the first release is made.
+**v1.1 - 2024-02-27**
+
+__Latest__:
+
+![Maven Central Version](https://img.shields.io/maven-central/v/dev.dubsky/RapidRequest)
