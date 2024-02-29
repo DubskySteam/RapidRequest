@@ -9,9 +9,10 @@ import java.util.Objects;
  */
 public class RapidResponse {
 
-    int statusCode;
-    String response;
-    Request request;
+    private int statusCode;
+    private String response;
+    private Request request;
+    private volatile boolean completed = false;
 
     public RapidResponse() {
     }
@@ -44,6 +45,39 @@ public class RapidResponse {
 
     public void setRequest(Request request) {
         this.request = request;
+    }
+
+    /**
+     * Method to complete the response
+     *
+     * @param statusCode the status code of the response
+     * @param response   the response body
+     */
+    public synchronized void complete(int statusCode, String response) {
+        this.statusCode = statusCode;
+        this.response = response;
+        this.completed = true;
+        this.notifyAll();
+    }
+
+    /**
+     * Method to check if the response is completed
+     *
+     * @return true if the response is completed, false otherwise
+     */
+    public synchronized boolean isCompleted() {
+        return completed;
+    }
+
+    /**
+     * Method to wait for the response to be completed
+     *
+     * @throws InterruptedException if the thread is interrupted while waiting
+     */
+    public synchronized void waitForCompletion() throws InterruptedException {
+        while (!completed) {
+            this.wait();
+        }
     }
 
     @Override
