@@ -1,18 +1,19 @@
 # RapidRequest
 RapidRequest is a simple and easy to use HTTP request library for Java.
-It is designed to make HTTP requests with minimal code and maximum flexibility.
+It is designed to make HTTP requests with minimal code and adequate flexibility.
 
-![Maven Central Version](https://img.shields.io/maven-central/v/dev.dubsky/RapidRequest)
-![GitHub](https://img.shields.io/github/license/dubskysteam/RapidRequest)
+![Maven Central Version](https://img.shields.io/maven-central/v/dev.dubsky/RapidRequest?style=for-the-badge)
+![GitHub](https://img.shields.io/github/license/dubskysteam/RapidRequest?style=for-the-badge)
 
 ## 🌟 Features
-- [X] Synchronous Requests
+- [X] Logging
 - [X] Response Object
+- [X] Synchronous Requests
+- [X] Asynchronous Requests
 
 ## 🚀 Upcoming Features
-- [ ] Asynchronous Requests
-- [ ] Advanced Logging
-- [ ] Exception Handling
+- [ ] Class Parsing
+- [ ] Better Exception Handling
 - [ ] File Handling
 - [ ] Threading?
 
