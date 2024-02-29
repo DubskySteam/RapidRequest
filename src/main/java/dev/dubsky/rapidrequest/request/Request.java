@@ -1,8 +1,8 @@
-package request;
+package dev.dubsky.rapidrequest.request;
 
-import response.RapidResponse;
-import util.ContentType;
-import util.HttpMethod;
+import dev.dubsky.rapidrequest.response.RapidResponse;
+import dev.dubsky.rapidrequest.util.ContentType;
+import dev.dubsky.rapidrequest.util.HttpMethod;
 
 import java.util.AbstractMap;
 import java.util.ArrayList;

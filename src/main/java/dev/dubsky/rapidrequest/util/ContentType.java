@@ -1,4 +1,4 @@
-package util;
+package dev.dubsky.rapidrequest.util;
 
 /**
  * Represents the type of content that the client expects to receive.
