@@ -1,3 +1,5 @@
+import dev.dubsky.rapidrequest.config.LogConfig;
+import dev.dubsky.rapidrequest.logging.RapidLogger;
 import dev.dubsky.rapidrequest.request.AsyncRequest;
 import dev.dubsky.rapidrequest.response.RapidResponse;
 import dev.dubsky.rapidrequest.util.HttpMethod;
@@ -9,6 +11,9 @@ public class AsyncRequestTest {
 
     @Test
     public void testAsyncRequest() {
+
+        LogConfig.LOGGING = true;
+
         // Set up the request
         RapidResponse response = new AsyncRequest()
                 .setUrl("https://type.fit/api/quotes")
@@ -24,6 +29,7 @@ public class AsyncRequestTest {
             assert(response.isCompleted());
             assert(response.getStatusCode() == 200);
             assert(response.getResponse() != null);
+            RapidLogger.getInstance().log("Response: " + response.getResponse());
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }

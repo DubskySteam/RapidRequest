@@ -37,28 +37,39 @@ implementation 'dev.dubsky:rapidrequest:1.2'
 
 ### Step 2: Make a request
 
-Blocking (synchronous) request:
+**Blocking (synchronous) request:**
 ```java
-RapidResponse req = new RapidRequest()
-        .setUrl("https://type.fit/api/quotes") // Request URL
-        .setMethod(HttpMethod.GET) // Request method
-        .expect(ContentType.JSON) // Expected response content type
-        .addHeader("Header", "Header-Value") // Add request headers
-        .addHeader("Another-Header", "Another-Value") // Add request headers
-        .call(); // Send the request
+RapidResponse response = new SyncRequest()
+        .setUrl("https://type.fit/api/quotes")
+        .setMethod(HttpMethod.GET)
+        .expect(ContentType.JSON)  // Optional
+        .addHeader("Header", "Header-Value")  // Optional
+        .addHeader("Another-Header", "Another-Value")  // Optional
+        .call();
 ```
 
-Asynchronous request:
+**Asynchronous request**:
 ```java
-RapidResponse req = new RapidRequest()
-        .setUrl("https://type.fit/api/quotes") // Request URL
-        .setMethod(HttpMethod.GET) // Request method
-        .expect(ContentType.JSON) // Expected response content type
-        .addHeader("Header", "Header-Value") // Add request headers
-        .addHeader("Another-Header", "Another-Value") // Add request headers
-        .callAsync(response -> {
-            // Handle the response
-        });
+RapidResponse response = new AsyncRequest()
+        .setUrl("https://type.fit/api/quotes")
+        .setMethod(HttpMethod.GET)
+        .expect(ContentType.JSON) // Optional
+        .addHeader("Header", "Header-Value") // Optional
+        .addHeader("Another-Header", "Another-Value") // Optional
+        .call();
+```
+
+**Asynchronous request with blocking**:
+```java
+AsyncRequest response = new AsyncRequest()
+        .setUrl("https://type.fit/api/quotes")
+        .setMethod(HttpMethod.GET)
+        .expect(ContentType.JSON) // Optional
+        .addHeader("Header", "Header-Value") // Optional
+        .addHeader("Another-Header", "Another-Value") // Optional
+        .call();
+
+response.waitForCompletion(); // Blocks until the request is complete
 ```
 
 ### Step 3: Result is given in a Response Object
@@ -86,6 +97,7 @@ RapidResponse{
 ## 📌 Version History
 
 **v1.1 - 2024-02-27**
+**v1.2 - 2024-02-29**
 
 __Latest__:
 
