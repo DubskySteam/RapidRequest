@@ -29,8 +29,5 @@ public class SyncRequestTest {
         // Check that the body is not null or empty
         assertNotNull(response.getResponse());
         assertFalse(response.getResponse().isEmpty());
-
-        // Optional: Output the response for manual verification
-        System.out.println(response.getResponse());
     }
 }
